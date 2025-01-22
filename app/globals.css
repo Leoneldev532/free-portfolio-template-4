@@ -14,10 +14,8 @@
 }
 
 body{
-    font-family:"wonder",sans-serif !important;
-    background-size: contain;
+    font-family:var(--var-inter-font),sans-serif !important;
    
-    background-image:url("../public/Bg.png");
 }
 
 .packShape{
@@ -55,4 +53,18 @@ body{
     border-radius: 20px;
     will-change: transform, opacity;
     z-index:2;
+  }
+
+  .menu{
+    color:#a3a3a31a
+    /* -webkit-mask-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1528 200" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path fill="rgba(47, 73, 94, 1)" d="M 0 0 C 387.5 0 387.5 110 775 110 L 775 110 L 775 0 L 0 0 Z" stroke-width="0"></path> <path fill="rgba(47, 73, 94, 1)" d="M 774 110 C 1151 110 1151 0 1528 0 L 1528 0 L 1528 0 L 774 0 Z" height="230" stroke-width="0"></path> </svg>');
+    mask-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1528 200" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path fill="rgba(47, 73, 94, 1)" d="M 0 0 C 387.5 0 387.5 110 775 110 L 775 110 L 775 0 L 0 0 Z" stroke-width="0"></path> <path fill="rgba(47, 73, 94, 1)" d="M 774 110 C 1151 110 1151 0 1528 0 L 1528 0 L 1528 0 L 774 0 Z" height="230" stroke-width="0"></path> </svg>');
+ } */
+
+  }
+
+  .line{
+    height:1.4rem;
+    overflow: hidden;
+    opacity:0;
   }

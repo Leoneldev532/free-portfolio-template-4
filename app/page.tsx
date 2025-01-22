@@ -8,6 +8,7 @@ import diamant from "@/public/Group.png"
 import groupdiamant from "@/public/Group 24.png"
 import groupCat from "@/public/Group 21.png"
 
+import image4 from "@/public/4.jpg"
 import im1 from "@/public/Group 13.png"
 import im2 from "@/public/Group 19.png"
 
@@ -26,320 +27,152 @@ import Image from "next/image"
 import { useEffect, useRef, useState } from "react"
 import gsap from "gsap"
 import confetti from "canvas-confetti"
+import SplitType from "split-type"
+import { tl } from "@/lib/utils"
 
 
 const App = () => {
 
 
+
+  const handleAnimatedSvg= () =>{
+
+    tl.to('.bluee', {
+        duration: .8,
+        attr: { d: 'M0 502S175 272 500 272s500 230 500 230V0H0Z'},
+        ease: 'power2.in',
+    })
+    .to('.bluee', {
+        duration: .8,
+        attr: { d: 'M0 2S175 1 500 1s500 1 500 1V0H0Z'},
+        ease: 'power2.out',
+
+    })
+  }
+
+  const animeProfilePicture = () =>{
+
+    tl.
+    fromTo(".profileImage",{
+        scale:0,
+    },{
+      scale:1,
+      duration:0.5,
+      ease:"power2.in"
+    }).fromTo(".name,.cap,.firstdescription",{
+      opacity:0,
+    },{
+      opacity:1,
+      ease:"power2.in",
+      duration:0.5,
+      stagger:0.3
+    })
+
+  }
+
+
+  const handleAnimateTxt = (lines:NodeListOf<Element>) => {
+   
+    lines.forEach(line => {
+      const mySplitText = new SplitType(line, { types: 'lines' });
+
+      if(!mySplitText) return;
   
-  const [isOpen, setIsOpen] = useState(false)
-  const tl3 = gsap.timeline()
-
-  const tabPack: packType[] = [
-    {
-      title: "small Pack",
-      bigImage: im1,
-      listOfItems: [
-        {
-          icon: storm,
-          price: 200
-        }, {
-          icon: piece,
-          price: 4500
-        },
-        {
-          icon: caisse,
-          price: 1
+      mySplitText.lines.forEach(line => {
+        line.style.willChange = 'transform';
+      });
+  
+      // Animez les lignes de texte
+      tl.fromTo(mySplitText.lines, {
+        opacity:0,
+        yPercent: 105,
+      },{
+        yPercent: 0,
+        stagger: 0.2,
+        ease: 'power4.out',
+        duration: 1.2,
+        opacity:1,
+        onComplete: () => {
+          mySplitText.lines.forEach(line => {
+            line.style.willChange = 'auto';
+          });
+         
         }
-      ],
-      allowAnimation: isOpen,
-      finalPrice: 2.99
-    },
-    {
-
-      title: "Big Pack",
-      bigImage: im2,
-      listOfItems: [
-        {
-          icon: storm,
-          price: 3000
-        }, {
-          icon: piece,
-          price: 200
-        },
-        {
-          icon: caisse,
-          price: 2
-        }
-      ],
-      allowAnimation: isOpen,
-      finalPrice: 5.99
-    }
-  ]
-
-
-
-
-  const productTab: productType[] = [
-    {
-      image: diamant,
-      number: "200x",
-      price: 1.99,
-      allowAnimation: isOpen
-    },
-    {
-      image: groupdiamant,
-      number: "1000x",
-      price: 4.99,
-      allowAnimation: isOpen
-    }, {
-      image: groupCat,
-      number: "5000x",
-      price: 1.99,
-      allowAnimation: isOpen
-    }
-  ]
-
-
-  function celebrate() {
-    confetti({
-      particleCount: 150,
-      spread: 100,
-      origin: { y: 0.6 },
-      // colors,
-      disableForReducedMotion: true
+      });
     });
-  }
-
-
-  const tl = gsap.timeline({ delay: 10 })
-
-  const showCat = () => {
-    tl.fromTo(".cat", {
-      y: -103,
-      duration: 200,
-      ease: "elastic"
-    }, {
-      y: 0,
-      onComplete: () => {
-        celebrate()
-      }
-    })
-  }
-
-  const rl = gsap.timeline({ delay: 1 })
-
-  const animatedProduct = () => {
-    rl.fromTo(".product", {
-      y: -100,
-      opacity: 0
-    }, {
-      y: 0,
-      opacity: 1,
-      duration: 0.3,
-      ease: "power3.inOut",
-      stagger: 0.3
-    })
-  }
-
-  const animatedPack = () => {
-    rl.fromTo(".pack", {
-      y: 100,
-      opacity: 0
-    }, {
-      y: 0,
-      opacity: 1,
-      duration: 0.3,
-      ease: "power3.inOut",
-      stagger: 0.3
-    })
-  }
-
-
-  useEffect(() => {
-    animatedPack()
-    animatedProduct()
-    showCat()
-  }, [isOpen])
-
-
-  const toggleShow = () => {
-    if (isOpen) {
-
-      tl3.to(".present", {
-        scale: 1,
-        ease: "elastic.inOut",
-        duration: 0.3
-      }).to(".marketBlock", {
-        scale: 0,
-        ease: "elastic.inOut",
-        duration: 0.3
-      }).to(".marketBlock", {
-        opacity: 0,
-        ease: "elastic.inOut",
-        duration: 0.3
-      }, "-=2")
-
-      setIsOpen(false)
-    } else {
-      tl3.to(".present", {
-        scale: 0,
-        ease: "elastic.inOut",
-        duration: 0.3
-      }).to(".marketBlock", {
-        scale: 1,
-        ease: "elastic.inOut",
-        duration: 0.3
-      }).to(".marketBlock", {
-        opacity: 1,
-        ease: "elastic.inOut",
-        duration: 0.3
-      }, "-=2")
-
-      setIsOpen(true)
-    }
-  }
-
-  const showSpecialBtnAnimated = () => {
-    gsap.fromTo(".specialbtn", {
-      y: -300,
-    }, {
-      y: 0,
-      ease: "power4",
-      duration: 0.4,
-      stagger: {
-        each: 0.3
-      }
-    })
-  }
-  const containerDustRef = useRef<HTMLDivElement | null>(null)
-
-
-
-  const addDust = (containerDustRef: HTMLDivElement | null) => {
-    if (!containerDustRef) return;
-    const total = 70;
-    const w = 500; // Largeur du conteneur
-    const h = 200; // Hauteur du conteneur
-    const Tweens: HTMLDivElement[] = []
-    for (let i = total; i--;) {
-      const Div = document.createElement('div');
-      console.log(R(w), R(h))
-      gsap.set(Div, {
-        className: 'dot',
-        y: R(h),
-        opacity: 0
-      });
-      containerDustRef.appendChild(Div);
-      Anim(Div);
-      Tweens.push(Div);
-    }
-
-    function R(max: number) {
-      return Math.random() * max;
-    }
-
-    function Anim(elm: HTMLDivElement) {
-      const newX = R(w);
-      const newY = R(h);
-
-      gsap.to(elm, {
-        duration: R(2) + 1,
-        x: newX,
-        y: newY,
-        opacity: R(0.5) + 0.5,
-        scale: R(1) + 0.5,
-        delay: R(5),
-        onComplete: () => Anim(elm),
-        ease: "power1.inOut"
-      });
-    }
   };
 
+  const handleAnimeSocialMedia = () =>{
+    tl.fromTo(".contactlink",{
+        opacity:0,
+        xPercent: 105,
+      },{
+        xPercent: 0,
+        stagger: {
+          each:0.2
+        },
+       
+      ease:"power2.in",
+        duration: 0.,
+        opacity:1,
+    })
+  }
+  
 
-  useEffect(() => {
-    showSpecialBtnAnimated()
-    addDust(containerDustRef?.current)
-  }, [])
 
+useEffect(()=>{
+
+  const lines = document.querySelectorAll('.split');
+
+  handleAnimatedSvg()
+  animeProfilePicture()
+  handleAnimateTxt(lines)
+  handleAnimeSocialMedia()
+},[])
 
 
   return (
-    <section className="  relative min-h-[90vh] py-8 justify-start backdrop-blur-sm  items-center rounded-xl bg-black/20 h-full w-full   flex flex-col  ">
+    <section className="  relative min-h-[670px] py-12 justify-center 
+     items-center  overflow-hidden  h-full w-full   flex flex-col  ">
 
-      <header className="flex justify-between items-center w-full px-8 ">
+<div className="absolute flex flex-col w-full h-full justify-center items-center overflow-hidden top-0 left-0 z-10">
+      <div className="relative h-36 w-36 profileImage overflow-hidden rounded-lg grayscale bg-neutral-300/10 border border-neutral-300/40 ">
 
-        <div className="flex gap-x-2">
-          <SpecialButton image={piece} intent={"primary"} iconPosition="left" title={"34"} />
-          <SpecialButton image={storm} intent={"primary"} iconPosition="left" title={"4"} />
-        </div>
-        <SpecialButton onClick={() => toggleShow()} image={!isOpen ? play : Union} intent={"primaryp"} iconPosition="left" />
-
-      </header>
-
-      <div className="flex present flex-col gap-y-4 w-full relative justify-center items-center h-auto xl:min-h-[50vh] ">
-
-        <div ref={containerDustRef} className="h-36 z-0  absolute -top-[90px]  left-[27%]  w-72 flex justify-center items-center">
-
-
-        </div>
-
-        <div className="flex present  flex-col gap-y-4 w-full z-10  justify-center items-center  ">
-          <h1 className="title text-7xl md:my-0 my-8 uppercase tracking-wider relative">Cat Game</h1>
-
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="#EEAC83" className="size-56 cart">
-            <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z" />
-          </svg>
-
-
-          <button onClick={() => toggleShow()} className="px-4 py-2 rounded-xl beginbtn text-4xl uppercase"> Go Market </button>
-        </div>
+        <Image  src={image4} height={"200"} width={"200"} className="object-cover h-full object-center w-full" alt="profil" />
       </div>
 
-      <div className="absolute w-full scale-0  marketBlock  flex justify-center lg:mt-8 mt-14 h-full items-center ">
+      <div className="flex flex-col py-3 gap-y-1  justify-center items-center">
 
-        <Image src={cat} className="object-contain cat absolute -top-[70px] " height="124" width="224" alt="chat" />
-
-        <Image src={hear1} className="object-contain absolute left-[10%] -top-[30px] " height="120" width="64" alt="chat" />
-        <Image src={hear2} className="object-contain absolute -top-[30px] left-[83%]  " height="120" width="64" alt="chat" />
-
-        <div className="h-auto lg:h-[75vh] w-[90%] lg:w-[80%] absolute top-0 left-[6%] lg:left-[10%] flex mt-4 flex-col  border-8 px-4
-         pb-8  bg-customLight items-start border-customLightOrange rounded-xl">
-
-          <div className="w-full flex justify-between  px-3 items-center">
-
-            <h1 className="text-3xl lg:text-6xl text-customOrange antialiased py-2 font-bold"> Cat shop </h1>
-            <div className="flex gap-x-3 justify-start items-center ">
-              <SpecialButton image={piece} intent={"secondary"} iconPosition="left" title={"Coins"} />
-              <SpecialButton image={storm} intent={"secondary"} iconPosition="left" title={"Energy"} />
-              <SpecialButton image={Inb} intent={"primary"} iconPosition="left" title={"Energy"} />
-            </div>
-
-          </div>
-
-          <div className="flex gap-3 w-full  justify-start h-full pb-8  lg:flex-row flex-col  items-start">
-            <div className={"flex gap-x-4 justify-center px-2 h-full items-center  w-full lg:w-1/2"}>
-              {tabPack.map((item: packType, index: number) => (
-                <PackComponent packProps={item} key={index + "pack"} />
-              ))
-
-
-              }
-
-            </div>
-            <div className="grid grid-cols-2 lg:px-0 px-2  gap-4 w-full  lg:w-1/2">
-
-              {productTab.map((item: productType, index: number) => (
-                <ProductComponent ProductComponentProps={item} key={index + "product"} />
-              ))}
-
-
-
-            </div>
-          </div>
-        </div>
+        <h2 className="font-semibold name text-xl">@Leoy</h2>
+        <span className="text-neutral-400 cap"> Dev Front </span>
       </div>
 
+      <p className="max-w-sm text-center firstdescription font-medium text-balance">
+        passionate about art , 
+        <span className="px-2 pb-1 rounded-full  border align-middle border-neutral-300 text-neutral-400">design</span> , 
+        motion and   <span className="px-2 pb-1 rounded-full  border align-middle border-neutral-300 text-neutral-400">technologies</span> . Let’Us Connect
+      </p>
+
+      <p className="max-w-sm text-center overflow-hidden  split  mt-4 py-2 text-balance text-neutral-600">
+        I&apos;m a front-end developer with a strong focus on creating engaging brand experiences and intuitive
+        user interfaces. #237
+      </p>
+
+      <div className="rounded-full flex  gap-3 justify-center mt-4 overflow-hidden items-center h-12 border border-neutral-300  px-1.5 py-2 ">
+
+        <div className="bx-shd h-10 w-10  contactlink rounded-full bg-neutral-300/40 ">
+
+        </div>
+        <div className="bx-shd h-10 w-10 contactlink  rounded-full bg-neutral-300/40 ">
+
+
+        </div>
+        <div className="bx-shd h-10 w-10 contactlink  rounded-full bg-neutral-300/40 ">
+
+        </div> 
+
+      </div>
+      </div>
 
 
     </section>

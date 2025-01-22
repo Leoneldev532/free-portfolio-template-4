@@ -1,6 +1,8 @@
 import { buttonStyles } from "@/app/Components/SpecialButton";
 import {VariantProps } from "class-variance-authority";
+import { Url } from "next/dist/shared/lib/router/router";
 import { StaticImageData } from "next/image";
+import { ReactNode } from "react";
 
 
 
@@ -40,3 +42,13 @@ export type productType = {
 }
 
 
+export type workComponentType = {
+    title:string,
+    subtitle:string,
+    link:string,
+    icon:ReactNode 
+}
+
+export type specialLinkType = {
+    link:string | Url
+}
