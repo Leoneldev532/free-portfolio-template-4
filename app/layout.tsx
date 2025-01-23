@@ -61,7 +61,7 @@ export default function RootLayout({
             <body className={`flex justify-center h-full   bg-white items-center w-full ` + inter.className}>
                 <div className="flex w-full gap-x-4 max-w-[740px] md:py-8 py-4 px-4 md:px-8 h-full flex-col">
 
-                    <div className="w-full  relative  flex  flex-col  justify-start items-start">
+                    <div className="w-full  relative  flex  flex-col overflow-hidden  justify-start items-start">
 
                     <svg  viewBox="0 0 1000 1000" className="h-[900px] pointer-events-none -top-[10px] absolute z-50 w-full"  preserveAspectRatio="none">
                                       <path className="bluee" d="M0,1005S175,995,500,995s500,5,500,5V0H0Z"></path>
