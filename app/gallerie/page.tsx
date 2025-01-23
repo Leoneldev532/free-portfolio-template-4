@@ -35,7 +35,7 @@ const Page = () => {
  
 
   return (
-    <section className="  relative min-h-[90vh] py-12 justify-start 
+    <section className="  relative min-h-[69vh] py-12 justify-start 
      items-center   h-full w-full   flex flex-col  ">
 
          <div className="flex  relative justify-center items-center  w-full h-full">
