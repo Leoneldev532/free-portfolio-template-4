@@ -71,8 +71,9 @@ const App = () => {
   }
 
 
-  const handleAnimateTxt = (lines:NodeListOf<Element>) => {
+  const handleAnimateTxt = () => {
    
+  const lines = document.querySelectorAll('.split');
     lines.forEach(line => {
       const mySplitText = new SplitType(line, { types: 'lines' });
 
@@ -113,7 +114,7 @@ const App = () => {
         },
        
       ease:"power2.in",
-        duration: 0.,
+        duration: 0.3,
         opacity:1,
     })
   }
@@ -122,11 +123,10 @@ const App = () => {
 
 useEffect(()=>{
 
-  const lines = document.querySelectorAll('.split');
 
   handleAnimatedSvg()
   animeProfilePicture()
-  handleAnimateTxt(lines)
+  handleAnimateTxt()
   handleAnimeSocialMedia()
 },[])
 
@@ -160,14 +160,37 @@ useEffect(()=>{
 
       <div className="rounded-full flex  gap-3 justify-center mt-4 overflow-hidden items-center h-12 border border-neutral-300  px-1.5 py-2 ">
 
-        <div className="bx-shd h-10 w-10  contactlink rounded-full bg-neutral-300/40 ">
+        <div className="bx-shd h-10 w-10  contactlink flex justify-center items-center rounded-full bg-neutral-300/40 ">
+
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-4">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 0 1-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z" />
+            </svg>
 
         </div>
-        <div className="bx-shd h-10 w-10 contactlink  rounded-full bg-neutral-300/40 ">
+        <div className="bx-shd h-10 w-10 contactlink flex justify-center items-center  rounded-full bg-neutral-300/40 ">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-4">
+  <path strokeLinecap="round" strokeLinejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
+</svg>
 
 
         </div>
-        <div className="bx-shd h-10 w-10 contactlink  rounded-full bg-neutral-300/40 ">
+        <div className="bx-shd h-10 w-10 contactlink flex justify-center items-center  rounded-full bg-neutral-300/40 ">
+        <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      width="1em"
+      height="1em"
+    >
+      <path
+        fill="none"
+        stroke="currentColor"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="1.5"
+        d="m3 21l7.548-7.548M21 3l-7.548 7.548m0 0L8 3H3l7.548 10.452m2.904-2.904L21 21h-5l-5.452-7.548"
+        color="currentColor"
+      ></path>
+    </svg>
 
         </div> 
 

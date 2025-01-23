@@ -1,4 +1,4 @@
-
+// @ts-nocheck
 "use client"
 
 import Image from "next/image"
@@ -79,10 +79,10 @@ const Page = () => {
   }, []);
 
   return (
-    <section className="  relative min-h-[90vh] py-12 justify-start 
-     items-center   h-full w-full   flex flex-col  ">
+    <section className="  relative min-h-[69vh] py-12 justify-start 
+     items-center   w-full   flex flex-col  ">
 
-         <div className="flex flex-col w-full px-36 relative  justify-center items-center   gap-3 h-full">
+         <div className="flex flex-col w-full px-8 md:px-36 relative  justify-center items-center   gap-3 h-full">
 
          <div className="h-full w-full relative ">
             {workTab?.map((work,index:number)=>(

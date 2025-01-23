@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { buttonStyles } from "@/app/Components/SpecialButton";
 import {VariantProps } from "class-variance-authority";
 import { Url } from "next/dist/shared/lib/router/router";

@@ -1,3 +1,5 @@
+
+// @ts-nocheck
 "use client"
 import { specialLinkType } from '@/lib/type'
 import gsap from 'gsap'

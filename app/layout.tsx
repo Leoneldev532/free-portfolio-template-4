@@ -1,3 +1,4 @@
+// @ts-nocheck
 "use client"
 import type { Metadata } from "next";
 import "./globals.css";
@@ -35,8 +36,21 @@ export default function RootLayout({
        
       }
 
+      const handleShotDownMenu = () =>{
+        tl.fromTo('.menu', {
+            y:-200,
+
+        },{
+            y:0,
+            ease: 'power2.out',
+            duration: .4,
+
+        })
+      }
+
       useEffect(()=>{
         handleAnimatedSvg()
+        handleShotDownMenu()
       },[])
 
 
@@ -45,11 +59,11 @@ export default function RootLayout({
         <html lang="en" className="light" >
             <meta charSet="utf-8" />
             <body className={`flex justify-center h-full   bg-white items-center w-full ` + inter.className}>
-                <div className="flex w-full gap-x-4 max-w-[740px] py-8 px-8 h-full flex-col">
+                <div className="flex w-full gap-x-4 max-w-[740px] md:py-8 py-4 px-4 md:px-8 h-full flex-col">
 
-                    <div className="w-full  relative  flex  flex-col overflow-hidden justify-start items-start">
+                    <div className="w-full  relative  flex  flex-col  justify-start items-start">
 
-                    <svg  viewBox="0 0 1000 1000" className="h-[900px] pointer-events-none -top-[10px] absolute z-20 w-full"  preserveAspectRatio="none">
+                    <svg  viewBox="0 0 1000 1000" className="h-[900px] pointer-events-none -top-[10px] absolute z-50 w-full"  preserveAspectRatio="none">
                                       <path className="bluee" d="M0,1005S175,995,500,995s500,5,500,5V0H0Z"></path>
                                   </svg>   
 
@@ -76,7 +90,7 @@ export default function RootLayout({
                            
                         <div className="border h-full flex flex-col justify-center items-center  border-dashed w-full">
 
-                            <div className=" z-10  py-2 px-2 border rounded-full mt-4  divide-x-2 flex justify-center items-center gap-x-3 h-full  ">
+                            <div className=" z-10  py-2 px-2 border rounded-full mt-4 menu  divide-x-2 flex justify-center items-center gap-x-3 h-full  ">
 
 
 

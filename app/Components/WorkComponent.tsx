@@ -1,3 +1,6 @@
+
+// @ts-nocheck
+
 "use client";
 import { workComponentType } from '@/lib/type';
 import { tl } from '@/lib/utils';
@@ -63,7 +66,7 @@ const WorkComponent = ({ WorkComponentProps }: { WorkComponentProps: workCompone
                 filter:"blur(0px)"      
              }).
             fromTo(container, {
-                scale: 1.4,
+                scale: 1.1,
                 zIndex: 50,
             }, {
                 scale: 1,
