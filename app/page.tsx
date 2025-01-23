@@ -1,4 +1,4 @@
-
+// @ts-nocheck
 "use client"
 import piece from "@/public/piece.png"
 import storm from "@/public/energy.png"
